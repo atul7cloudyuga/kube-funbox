@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RestController {
     @GetMapping("/")
     public String root() {
-        return "Hello World!";
+        return "Hello World! Updated";
     }
 }
