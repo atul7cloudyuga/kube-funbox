@@ -53,9 +53,9 @@ workflows:
   standard-workflow:
     jobs:
       - build
-      - filters:
-          tags:
-            only: /.*/
+          filters:
+            tags:
+              only: /.*/
       - push:
           requires:
             - build
