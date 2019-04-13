@@ -28,7 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn -B package
+      - run: mvn -B package -DskipTests=true
 
       # start proprietary DB using private Docker image
       # with credentials stored in the UI
