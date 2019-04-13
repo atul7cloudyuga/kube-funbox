@@ -31,16 +31,16 @@ jobs:
       - run: mvn -B package -DskipTests=true
 
   push:
-    working_directory: /app
-      docker:
-        - image: docker:17.05.0-ce-git
-      - setup_remote_docker
+    working_directory: ~/repo
+    docker:
+      - image: docker:17.05.0-ce-git
+    - setup_remote_docker
 
-      # start proprietary DB using private Docker image
-      # with credentials stored in the UI
+    # start proprietary DB using private Docker image
+    # with credentials stored in the UI
 
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+    - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-      - run: docker build -t erfangc/kube-funbox:$CIRCLE_SHA1 .
+    - run: docker build -t erfangc/kube-funbox:$CIRCLE_SHA1 .
 
-      - run: docker push erfangc/kube-funbox:$CIRCLE_SHA1
+    - run: docker push erfangc/kube-funbox:$CIRCLE_SHA1
