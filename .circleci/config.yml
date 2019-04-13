@@ -52,15 +52,7 @@ jobs:
 
       - run: docker build -t erfangc/kube-funbox:$TAG .
 
-      - run: |
-          if [[ -z $CIRCLE_TAG ]]
-          then
-            TAG=$CIRCLE_BRANCH
-          else
-            TAG=$CIRCLE_TAG
-          fi;
-          echo $TAG;
-          docker push erfangc/kube-funbox:$TAG
+      - run: docker push erfangc/kube-funbox:$CIRCLE_TAG
 
 workflows:
   version: 2
