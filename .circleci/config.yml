@@ -6,7 +6,6 @@ defaults: &defaults
     else
       export TAG=$CIRCLE_TAG
     fi
-  working_directory: ~/project
 
 # Java Maven CircleCI 2.0 configuration file
 version: 2
