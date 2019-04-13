@@ -54,8 +54,8 @@ workflows:
     jobs:
       - build:
           filters:
-          tags:
-            only: /.*/
+            tags:
+              only: /.*/
       - push:
           requires:
             - build
