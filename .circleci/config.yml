@@ -51,6 +51,7 @@ jobs:
           else
             export TAG=$CIRCLE_TAG
           fi
+      - run: echo "\$TAG=$TAG"
 
       # start proprietary DB using private Docker image
       # with credentials stored in the UI
@@ -58,7 +59,7 @@ jobs:
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-      - run: docker build -t erfangc/kube-funbox:$CIRCLE_SHA1 .
+      - run: docker build -t erfangc/kube-funbox:$TAG .
 
       - run: docker push erfangc/kube-funbox:$TAG
 
