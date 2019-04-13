@@ -44,13 +44,6 @@ jobs:
           at: ~/repo
       - setup_remote_docker
 
-      - run: |
-          if [[ -z $CIRCLE_TAG ]]
-          then
-            export TAG=$CIRCLE_BRANCH
-          else
-            export TAG=$CIRCLE_TAG
-          fi
       - run: echo "\$TAG=$TAG"
 
       # start proprietary DB using private Docker image
@@ -61,7 +54,14 @@ jobs:
 
       - run: docker build -t erfangc/kube-funbox:$TAG .
 
-      - run: docker push erfangc/kube-funbox:$TAG
+      - run: |
+          if [[ -z $CIRCLE_TAG ]]
+          then
+            TAG=$CIRCLE_BRANCH
+          else
+            TAG=$CIRCLE_TAG
+          fi
+          docker push erfangc/kube-funbox:$TAG
 
 workflows:
   version: 2
