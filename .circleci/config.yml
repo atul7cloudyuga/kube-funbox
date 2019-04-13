@@ -44,8 +44,6 @@ jobs:
           at: ~/repo
       - setup_remote_docker
 
-      - run: echo "\$TAG=$TAG"
-
       # start proprietary DB using private Docker image
       # with credentials stored in the UI
       - run: ls -lR
@@ -60,7 +58,8 @@ jobs:
             TAG=$CIRCLE_BRANCH
           else
             TAG=$CIRCLE_TAG
-          fi
+          fi;
+          echo $TAG;
           docker push erfangc/kube-funbox:$TAG
 
 workflows:
