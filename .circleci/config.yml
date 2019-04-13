@@ -1,5 +1,5 @@
 defaults: &defaults
-  run: |
+  - run: |
     if [[ -z $CIRCLE_TAG ]]
     then
       export TAG=$CIRCLE_BRANCH
