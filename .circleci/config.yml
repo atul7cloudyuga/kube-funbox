@@ -30,6 +30,7 @@ jobs:
       # run tests!
       - run: mvn -B package -DskipTests=true
       - persist_to_workspace:
+          root: ~/repo
           paths:
             - target/kube-funbox.jar
   push:
