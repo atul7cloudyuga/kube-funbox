@@ -1,3 +1,13 @@
+defaults: &defaults
+  run: |
+    if [[ -z $CIRCLE_TAG ]]
+    then
+      export TAG=$CIRCLE_BRANCH
+    else
+      export TAG=$CIRCLE_TAG
+    fi
+  working_directory: ~/project
+
 # Java Maven CircleCI 2.0 configuration file
 version: 2
 jobs:
@@ -44,7 +54,8 @@ jobs:
           at: ~/repo
       - setup_remote_docker
 
-      # start proprietary DB using private Docker image
+      <<: *defaults
+        # start proprietary DB using private Docker image
       # with credentials stored in the UI
       - run: ls -lR
 
@@ -52,7 +63,7 @@ jobs:
 
       - run: docker build -t erfangc/kube-funbox:$CIRCLE_SHA1 .
 
-      - run: docker push erfangc/kube-funbox:$CIRCLE_SHA1
+      - run: docker push erfangc/kube-funbox:$TAG
 
 workflows:
   version: 2
