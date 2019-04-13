@@ -58,9 +58,7 @@ jobs:
             TAG=$CIRCLE_TAG
           fi;
           echo $TAG;
-          docker push erfangc/kube-funbox:$TAG
-
-      - run: docker build -t erfangc/kube-funbox:$TAG .
+          docker build -t erfangc/kube-funbox:$TAG .
 
       - run: |
           if [[ -z $CIRCLE_TAG ]]
