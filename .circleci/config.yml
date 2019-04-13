@@ -1,12 +1,3 @@
-defaults: &defaults
-  - run: |
-    if [[ -z $CIRCLE_TAG ]]
-    then
-      export TAG=$CIRCLE_BRANCH
-    else
-      export TAG=$CIRCLE_TAG
-    fi
-
 # Java Maven CircleCI 2.0 configuration file
 version: 2
 jobs:
@@ -53,8 +44,15 @@ jobs:
           at: ~/repo
       - setup_remote_docker
 
-      <<: *defaults
-        # start proprietary DB using private Docker image
+      - run: |
+          if [[ -z $CIRCLE_TAG ]]
+          then
+            export TAG=$CIRCLE_BRANCH
+          else
+            export TAG=$CIRCLE_TAG
+          fi
+
+      # start proprietary DB using private Docker image
       # with credentials stored in the UI
       - run: ls -lR
 
